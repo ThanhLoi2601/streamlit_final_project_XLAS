@@ -4,6 +4,8 @@ from tensorflow.keras import datasets, layers, models, optimizers
 import cv2
 import numpy as np
 from tensorflow.keras.models import model_from_json
+st.set_page_config(page_title="Chu viet Detection", page_icon="🖊️")
+
 model = None
 
 def tao_anh_ngau_nhien():
