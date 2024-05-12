@@ -34,15 +34,19 @@ if st.session_state.stop == True:
     FRAME_WINDOW.image(st.session_state.frame_stop, channels='BGR')
     
 svc = joblib.load('pages\svm_model.pkl')
-mydict = ['Anh Khoa', 'Minh Duc' ,'Thanh Loi']
+mydict = ['Duc Phu', 'Thanh Loi']
 
-def visualize(input, faces, fps, result, thickness=2):
+def visualize(input, faces, fps, thickness=2):
     if faces[1] is not None:
         for idx, face in enumerate(faces[1]):
+            face_align = recognizer.alignCrop(frame, face)
+            face_feature = recognizer.feature(face_align)
+            test_predict = svc.predict(face_feature)
+            result = mydict[test_predict[0]]
             #print('Face {}, top-left coordinates: ({:.0f}, {:.0f}), box width: {:.0f}, box height {:.0f}, score: {:.2f}'.format(idx, face[0], face[1], face[2], face[3], face[-1]))
             coords = face[:-1].astype(np.int32)
-            cv.putText(frame,result,(coords[0], coords[1]),cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-            cv.rectangle(input, (coords[0], coords[1]+5), (coords[0]+coords[2], coords[1]+coords[3]), (0, 255, 0), thickness)
+            cv.putText(frame,result,(coords[0], coords[1] - 5),cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            cv.rectangle(input, (coords[0], coords[1]), (coords[0]+coords[2], coords[1]+coords[3]), (0, 255, 0), thickness)
             cv.circle(input, (coords[4], coords[5]), 2, (255, 0, 0), thickness)
             cv.circle(input, (coords[6], coords[7]), 2, (0, 0, 255), thickness)
             cv.circle(input, (coords[8], coords[9]), 2, (0, 255, 0), thickness)
@@ -69,7 +73,6 @@ if __name__ == '__main__':
     frameHeight = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
     detector.setInputSize([frameWidth, frameHeight])
 
-    result = 'None'
     while True:
         hasFrame, frame = cap.read()
         if not hasFrame:
@@ -84,14 +87,9 @@ if __name__ == '__main__':
         key = cv.waitKey(1)
         if key == 27:
             break
-        if faces[1] is not None:
-            face_align = recognizer.alignCrop(frame, faces[1][0])
-            face_feature = recognizer.feature(face_align)
-            test_predict = svc.predict(face_feature)
-            result = mydict[test_predict[0]]
 
         # Draw results on the input image
-        visualize(frame, faces, tm.getFPS(), result)
+        visualize(frame, faces, tm.getFPS())
 
         # Visualize results
         FRAME_WINDOW.image(frame, channels='BGR')
