@@ -15,7 +15,7 @@ st.markdown(
     **👈 Select a demo from the sidebar**
     ### Các thành viên nhóm:
     - Nguyễn Thành Lợi -21110234
-    - Nguyễn Đức Phú - 21110...
+    - Nguyễn Đức Phú - 21110845
     ### GVHD: ThS.Trần Tiến Đức
     ### Cấu trúc trang website như sau
     - 
