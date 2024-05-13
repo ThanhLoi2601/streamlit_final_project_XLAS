@@ -7,7 +7,7 @@ import tempfile
 score_threshold = 0.9
 nms_threshold = 0.3
 top_k = 5000
-
+st.set_page_config(page_title="Nhận dạng khuôn mặt", page_icon="👨‍👩‍👧‍👦")
 st.subheader('Nhận dạng khuôn mặt')
 cap = cv.VideoCapture(0)
 
@@ -22,9 +22,9 @@ try:
         pass
 except:
     st.session_state["LoadModel"] = True
-    st.session_state["SVC"]=joblib.load('pages\svm_model.pkl')
+    st.session_state["SVC"]=joblib.load('models\svm_model.pkl')
     st.session_state["detector"] = cv.FaceDetectorYN.create(
-        "./pages/face_detection_yunet_2023mar.onnx",
+        "./models/face_detection_yunet_2023mar.onnx",
         "",
         (320, 320),
         score_threshold,
@@ -32,7 +32,7 @@ except:
         top_k
     )
     st.session_state["recognizer"] = cv.FaceRecognizerSF.create(
-        "./pages/face_recognition_sface_2021dec.onnx","")
+        "./models/face_recognition_sface_2021dec.onnx","")
     print('Load model lần đầu')   
 mydict = ['Duc Phu', 'Thanh Loi']
 
@@ -74,10 +74,10 @@ if option != "None" and option != None:
         frameHeight = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
         st.session_state["detector"].setInputSize([frameWidth, frameHeight])
         FRAME_WINDOW = st.image([])
-        
+        btn_stop = st.button("Stop")
         while True:
             hasFrame, frame = cap.read()
-            if not hasFrame:
+            if not hasFrame or btn_stop:
                 print('No frames grabbed!')
                 break
 
@@ -96,5 +96,4 @@ if option != "None" and option != None:
             # Visualize results
             FRAME_WINDOW.image(frame, channels='BGR')
         cv.destroyAllWindows()
-    
         

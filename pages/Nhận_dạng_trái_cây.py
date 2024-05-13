@@ -22,8 +22,8 @@ BLACK  = (0,0,0)
 BLUE   = (255,178,50)
 YELLOW = (0,255,255)
 
-model = 'pages\yolov8n_trai_cay.onnx'
-filename_classes = 'pages\object_detection_trai_cay_yolo.txt'
+model = 'models\yolov8n_trai_cay.onnx'
+filename_classes = 'models\object_detection_trai_cay_yolo.txt'
 mywidth = 640
 myheight = 640
 postprocessing ='yolov8'

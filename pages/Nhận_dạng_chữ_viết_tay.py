@@ -30,8 +30,8 @@ if 'is_load' not in st.session_state:
     OPTIMIZER = optimizers.Adam()
 
     # load model
-    model_architecture = 'pages\digit_config.json'
-    model_weights = 'pages\digit_weight.weights.h5'
+    model_architecture = 'models\digit_config.json'
+    model_weights = 'models\digit_weight.weights.h5'
     model = model_from_json(open(model_architecture).read())
     model.load_weights(model_weights)
 
