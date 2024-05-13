@@ -4,7 +4,7 @@ import numpy as np
 
 from PIL import Image
 st.set_page_config(page_title="Trai Cay Detection", page_icon="🍏")
-
+st.subheader('Nhận dạng trái cây')
 # Constants.
 INPUT_WIDTH = 640
 INPUT_HEIGHT = 640
