@@ -34,7 +34,7 @@ except:
     st.session_state["recognizer"] = cv.FaceRecognizerSF.create(
         "./models/face_recognition_sface_2021dec.onnx","")
     print('Load model lần đầu')   
-mydict = ['Duc Phu', 'Thanh Loi']
+mydict = ['Duc Phu', 'Tan Phat', 'Thanh Loi', 'Thuan An', 'Xuan An']
 
 def visualize(input, faces, fps, thickness=2):
     if faces[1] is not None:
