@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import cv2
 
-from pages.XuLyAnh.chapter3 import Negative, NegativeColor, Logarit, Power, PiecewiseLinear, Histogram, HistEqual
+from XuLyAnh.chapter3 import Negative, NegativeColor, Logarit, Power, PiecewiseLinear, Histogram, HistEqual
 
 st.set_page_config(page_title="Xử lý ảnh", page_icon="🖼️")
 st.header("Xử lý ảnh")
