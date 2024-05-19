@@ -18,7 +18,11 @@ st.markdown(
     - Nguyễn Đức Phú - 21110845
     ### GVHD: ThS.Trần Tiến Đức
     ### Cấu trúc trang website như sau
-    - 
-    - 
+    - Home
+    - Nhận diện khuôn mặt
+    - Nhận diện trái cây bằng Yolov8
+    - Nhận diện chữ số viết tay
+    - Xử lý ảnh
+    - Nhận diện cử chỉ tay
 """
 )
