@@ -16,43 +16,16 @@ from HandGesture.model import KeyPointClassifier
 from HandGesture.model import PointHistoryClassifier
 import os
 
-
-def get_args():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--device", type=int, default=0)
-    parser.add_argument("--width", help='cap width', type=int, default=960)
-    parser.add_argument("--height", help='cap height', type=int, default=540)
-
-    parser.add_argument('--use_static_image_mode', action='store_true')
-    parser.add_argument("--min_detection_confidence",
-                        help='min_detection_confidence',
-                        type=float,
-                        default=0.7)
-    parser.add_argument("--min_tracking_confidence",
-                        help='min_tracking_confidence',
-                        type=int,
-                        default=0.5)
-
-    args = parser.parse_args()
-
-    return args
-
-
 def main():
     st.set_page_config(page_title="Nhận dạng cử chỉ tay", page_icon="🖐️")
     st.header("Nhận dạng cử chỉ tay")
 
-    # Argument parsing #################################################################
-    args = get_args()
-
-    cap_device = args.device
-    cap_width = args.width
-    cap_height = args.height
-
-    use_static_image_mode = args.use_static_image_mode
-    min_detection_confidence = args.min_detection_confidence
-    min_tracking_confidence = args.min_tracking_confidence
+    # default setting
+    cap_width = 960
+    cap_height = 540
+    use_static_image_mode = False
+    min_detection_confidence = 0.7
+    min_tracking_confidence = 0.5
 
     use_brect = True
 
